@@ -1,28 +1,40 @@
+import { Button, TextField } from '@material-ui/core';
 import React, { Component } from 'react'
+import getBooks from '../../xhr/getAllBooks';
+import MediaCard from '../card/Card';
 
 export default class SearchByTitle extends Component {
+
+  state={
+    allBooks:[],
+    searchedtitle:"",
+    Bookbytitle:[]
+  }
+  async componentDidMount() {
+    getBooks().then( (response)=>{
+      this.setState({allBooks:response.data}); 
+    })
+  }  
     onchangetitle = (e) => {
         this.setState({searchedtitle:e.target.value})
         console.log("title",this.state.searchedtitle);
       };
       searchtitle = () => {
-        let ListBooksbytitle
+        let Bookbytitle
       
-        ListBooksbytitle=this.state.books.map( (i) => {
+        Bookbytitle=this.state.allBooks.map( (i) => {
           if ( i.title == this.state.searchedtitle )
           {
             console.log(true)
           return (
             <div >
-                <p >title:{i.title}</p>
-                <p >author:{i.auhtor}</p>
-                <p >summary:{i.summary}</p>
+                < MediaCard className="MediaCard" title={i.title} summary={i.summary} author={i.author} image={i.image}/>
             </div>
         )
           } else console.log(false)
         })
       
-        this.setState({ListBooksbytitle:ListBooksbytitle});
+        this.setState({Bookbytitle:Bookbytitle});
       };
     
     render() {
@@ -35,7 +47,7 @@ export default class SearchByTitle extends Component {
          <br></br><br></br>
         <Button variant="contained" onClick={this.searchtitle }>Search</Button>
       </form>
-       {this.state.ListBooksbytitle }
+       {this.state.Bookbytitle }
 
             </div>
         )

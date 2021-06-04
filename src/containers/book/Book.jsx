@@ -6,8 +6,11 @@ import getBooks from "../../xhr/getAllBooks";
 import SearchByISBN from "../../components/searchbyISBN/SearchByISBN" ;
 import MediaCard from "../../components/card/Card";
 import Grid from '@material-ui/core/Grid';
-
+import SearchByTitle from '../../components/searchbyTitle/SearchByTitle'
 import './book.css';
+import SearchByAuthor from "../../components/searchbyAuthor/SearchByAuthor";
+
+
 export default class Book extends Component {
      
     constructor(props){
@@ -26,21 +29,33 @@ export default class Book extends Component {
     }
     render() {
       return (
+        
         <div className="Book">
+          <div>
+        <Grid container spacing={3} >
+                <Grid item xs={12} sm={3}>
+                  <SearchByISBN />
+                 </Grid>
+                 <Grid item xs={12} sm={3}>
+                  <SearchByTitle />
+                 </Grid>
+                 <Grid item xs={12} sm={3}>
+                  <SearchByAuthor />
+                 </Grid>
+        </Grid>
+        </div>
             <Grid container spacing={3} className="BookList">
             {this.state.books.map( (element)=>{
               console.log("element",element);
               return (
                 <Grid item xs={12} sm={2}>
-                < MediaCard className="MediaCard" title={element.title} summary={element.summary} author={element.author} image={element.image}/>
+                < MediaCard className="MediaCard" title={element.title} summary={element.summary}
+                 author={element.author} image={element.image}/>
               </Grid>
               )
             })} 
             </Grid>
-            <div >
-            <SearchByISBN />
-
-            </div>
+        
             
         </div>
         

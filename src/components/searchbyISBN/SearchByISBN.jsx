@@ -1,15 +1,23 @@
 import { Button, List, ListItemText, TextField, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
+import getBooks from '../../xhr/getAllBooks';
 import getBookByISBN from "../../xhr/getBookByISBN"
+import MediaCard from '../card/Card';
+import './SearchByISBN'
 
 export default class SearchByISBN extends Component {
   state={
     bookDetails:{},
-    searchedISBN:""
+    searchedISBN:"",
+    allBooks:[],
+    bookByISBN:[]
   } 
 
   async componentDidMount() {
-    
+    getBooks().then( (response)=>{
+      this.setState({allBooks:response.data}); 
+    })
+        
   }
 
   onchangeISBN = (e) => {
@@ -17,12 +25,30 @@ export default class SearchByISBN extends Component {
         console.log("ISBN",this.state.searchedISBN);
       };
   searchISBN = () => {
+    /*
         getBookByISBN(this.state.searchedISBN).then( (response)=>{
           this.setState({bookDetails:response.data});
           console.log("book Details",this.state.bookDetails);
         })
-
-        };
+    */  
+        let bookByISBN = [];
+        bookByISBN=this.state.allBooks.map( (i) => {
+      
+          if (i.ISBN == this.state.searchedISBN )
+         {
+          console.log(true)
+          return(
+            <div >
+            < MediaCard className="MediaCard" title={i.title} summary={i.summary} author={i.author} image={i.image}/> 
+             </div>
+          );
+          
+         }
+           else
+          console.log(false)
+        })
+        this.setState({bookByISBN:bookByISBN});
+      }
     
     render() {
         return (
@@ -34,6 +60,8 @@ export default class SearchByISBN extends Component {
          <br></br><br></br>
         <Button variant="contained" onClick={this.searchISBN}>Search</Button>
       </form>
+      <br></br><br></br>
+      {/*
        {this.state.bookDetails.book?
        (<div>
        <Typography >title:{this.state.bookDetails.book.title}</Typography>
@@ -52,8 +80,11 @@ export default class SearchByISBN extends Component {
        }
        )}
        
-       </div>):null}
-            </div>
+      </div>):null}  */}
+
+{ this.state.bookByISBN}
+<br></br><br></br>
+         </div>
         )
     }
 }
