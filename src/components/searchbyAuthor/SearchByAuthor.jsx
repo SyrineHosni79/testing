@@ -26,11 +26,11 @@ export default class SearchByAuthor extends Component {
           console.log( i.author === this.state.searchedauthor )
           if (i.author === this.state.searchedauthor )
           return (
-            <div >
-              
+            
+              <Grid item xs={6} sm={3}>
                 < MediaCard className="MediaCard" title={i.title} summary={i.summary} author={i.author} image={i.image}/>
-              
-            </div>
+              </Grid>
+            
         )
         })
         this.setState({Bookbyauthor:Bookbyauthor});
@@ -46,7 +46,8 @@ export default class SearchByAuthor extends Component {
                  <br></br><br></br>
                  <Button variant="contained" onClick={this.searchauthor }>Search</Button>
                  </form>
-                 <Grid container spacing={3} className="BookList">
+                 <br></br><br></br>
+                 <Grid container spacing={3} >
                  {this.state.Bookbyauthor}
                  </Grid>
             </div>

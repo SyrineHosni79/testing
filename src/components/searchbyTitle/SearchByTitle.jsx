@@ -47,6 +47,7 @@ export default class SearchByTitle extends Component {
          <br></br><br></br>
         <Button variant="contained" onClick={this.searchtitle }>Search</Button>
       </form>
+      <br></br><br></br>
        {this.state.Bookbytitle }
 
             </div>

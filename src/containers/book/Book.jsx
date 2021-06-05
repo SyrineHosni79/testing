@@ -39,11 +39,13 @@ export default class Book extends Component {
                  <Grid item xs={12} sm={3}>
                   <SearchByTitle />
                  </Grid>
-                 <Grid item xs={12} sm={3}>
+                 <Grid item xs={12} sm={6}>
                   <SearchByAuthor />
                  </Grid>
         </Grid>
         </div>
+        <div>
+          <h1>List Books :</h1>
             <Grid container spacing={3} className="BookList">
             {this.state.books.map( (element)=>{
               console.log("element",element);
@@ -55,7 +57,7 @@ export default class Book extends Component {
               )
             })} 
             </Grid>
-        
+            </div>
             
         </div>
         
