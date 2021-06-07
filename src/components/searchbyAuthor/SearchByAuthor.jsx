@@ -1,56 +1,62 @@
 import { Button, Grid, TextField } from '@material-ui/core';
 import React, { Component } from 'react'
-import getBooks from '../../xhr/getAllBooks';
+import getAllAuthors from '../../xhr/getAllAuthors';
 import MediaCard from '../card/Card';
 
 export default class SearchByAuthor extends Component {
     
   state={
-    allBooks:[],
-    searchedauthor:"",
-    Bookbyauthor:[]
-  }
+    searchedId:"",
+    allAuthors:[],
+    authorById:[]
+  } 
+
   async componentDidMount() {
-    getBooks().then( (response)=>{
-      this.setState({allBooks:response.data}); 
+    getAllAuthors().then( (response)=>{
+      this.setState({allAuthors:response.data}); 
     })
-  }  
-  onchangeauthor = (e) => {
-        this.setState({searchedauthor:e.target.value})
-        console.log("author",this.state.searchedauthor);
+        
+  }
+
+  onchangeId = (e) => {
+        this.setState({searchedId:e.target.value})
+        console.log("ISBN",this.state.searchedId);
       };
-      searchauthor = () => {
-        let Bookbyauthor
+  searchId = () => {
+        let authorById = [];
+        authorById=this.state.allAuthors.map( (i) => {
       
-        Bookbyauthor=this.state.allBooks.map( (i) => {
-          console.log( i.author === this.state.searchedauthor )
-          if (i.author === this.state.searchedauthor )
-          return (
-            
-              <Grid item xs={6} sm={3}>
-                < MediaCard className="MediaCard" title={i.title} summary={i.summary} author={i.author} image={i.image}/>
-              </Grid>
-            
-        )
+          if (<i className="Id"></i> == this.state.searchedId )
+         {
+          console.log(true)
+          return(
+            <div >
+            < MediaCard className="MediaCard" title={i.name} summary={i.biography}  image={i.image}/> 
+             </div>
+          );
+          
+         }
+           else
+          console.log(false)
         })
-        this.setState({Bookbyauthor:Bookbyauthor});
-      };
+        this.setState({authorById:authorById});
+      }
     
     render() {
         return (
             <div>
-                <h2>Find books by author   :</h2>
+               <h2>Find author by Id  :</h2>
       
-                <form  noValidate autoComplete="off">
-                 <TextField id="standard-basic" label="Search by author " onChange={this.onchangeauthor } />
-                 <br></br><br></br>
-                 <Button variant="contained" onClick={this.searchauthor }>Search</Button>
-                 </form>
-                 <br></br><br></br>
-                 <Grid container spacing={3} >
-                 {this.state.Bookbyauthor}
-                 </Grid>
-            </div>
+      <form  noValidate autoComplete="off">
+         <TextField id="standard-basic" label="Search by Id" onChange={this.onchangeId} />
+         <br></br><br></br>
+        <Button variant="contained" onClick={this.searchId}>Search</Button>
+      </form>
+      <br></br><br></br>
+
+{ this.state.authorById}
+<br></br><br></br>
+         </div>
         )
     }
 }

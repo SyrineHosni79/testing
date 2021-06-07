@@ -49,8 +49,7 @@ export default class SearchByTitle extends Component {
       </form>
       <br></br><br></br>
        {this.state.Bookbytitle }
-
-            </div>
+      </div>
         )
     }
 }
