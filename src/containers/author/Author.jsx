@@ -16,15 +16,14 @@ export default class Author extends Component {
     async componentDidMount() {
 
         getAllAuthors().then( (response) => {
-    
-            this.setState({authors:response.data})
+          this.setState({authors:response.data})
           console.log("authors",this.state.authors)
         })
     }
     render() {
       return (
         
-    <div className="Author">
+    <div className="author-container">
         <div>
         <Grid container spacing={3} >
                 <Grid item xs={12} sm={3}>
@@ -38,7 +37,7 @@ export default class Author extends Component {
         </div>
         <div>
           <h1>List Authors :</h1>
-            <Grid container spacing={3} className="BookList">
+            <Grid container spacing={3} className="author-list">
             {this.state.authors.map( (element)=>{
               console.log("element",element);
               return (
@@ -50,9 +49,7 @@ export default class Author extends Component {
             })} 
             </Grid>
         </div>
-            
     </div>
-        
       );  
     }
   }

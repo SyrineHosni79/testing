@@ -2,6 +2,10 @@ import { Button, TextField } from '@material-ui/core';
 import React, { Component } from 'react'
 import getOrderById from '../../xhr/getOrderByid';
 import getOrders  from '../../xhr/getOrders';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+
 
 export default class Order extends Component {
     constructor(props){
@@ -24,18 +28,7 @@ export default class Order extends Component {
         })
     }
     
-    inputBooks = (num) => {
-        
-    for (let i = 0; i < num ; i++)
-    {
-        console.log(i)
-        return (
-            <div>
-            <TextField label="add a book to order" ></TextField>
-            </div>
-        )
-    }
-    }
+    
 
     render() {
         return (
@@ -47,7 +40,7 @@ export default class Order extends Component {
                   <TextField id="standard-basic" label="add the new id" onChange={this.onchangeNewId}></TextField>
                   <br></br>
                   <TextField onChange={this.onchangeNumber} label="number book to order"></TextField>
-                  {this.inputBooks(3)}
+                  
                   <br></br><br></br>
                   <Button variant="contained" onClick={this.createOrder}>new order</Button>
               </div>  
