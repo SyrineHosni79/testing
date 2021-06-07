@@ -24,9 +24,8 @@ export default class Book extends Component {
     }
        
     handleSearchedBookChange = (e)=>{   //inline binding
-      if (this.state.searchedBook===""){
-        
-      }
+     
+    
       const foundedBooks = this.state.books.filter((book)=>{
         return book.title.toUpperCase().includes(e.target.value.toUpperCase())
       })
@@ -65,17 +64,17 @@ export default class Book extends Component {
         <div>
           <h1>List Books :</h1>
             <Grid container spacing={3} className="BookList">
-             { this.state.searchedBook !== "" &&(this.state.foundBooks.map( (element)=>{
+             { this.state.searchedBook !== "" &&(this.state.foundBooks.map( (element,index)=>{
               return (
-                <Grid item xs={12} sm={2}>
+                <Grid item xs={12} sm={2} key={index}>
                 < MediaCard className="MediaCard" title={element.title} summary={element.summary}
                  author={element.author} image={element.image}/>
               </Grid>
               )
             }))} 
-             { this.state.searchedBook === "" &&(this.state.books.map( (element)=>{
+             { this.state.searchedBook === "" &&(this.state.books.map( (element,index)=>{
               return (
-                <Grid item xs={12} sm={2}>
+                <Grid item xs={12} sm={2} key={index}>
                 < MediaCard className="MediaCard" title={element.title} summary={element.summary}
                  author={element.author} image={element.image}/>
               </Grid>
