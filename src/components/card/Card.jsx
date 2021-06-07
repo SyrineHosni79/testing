@@ -15,6 +15,9 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  content : {
+    height :250
+  }
 });
 
 export default function MediaCard(props) {
@@ -28,12 +31,12 @@ export default function MediaCard(props) {
           image={props.image}
           title="Contemplative Reptile"
         />
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.summary}
+            {props.summary.substr(1,100)+"..."}
           </Typography>
         </CardContent>
       </CardActionArea>
