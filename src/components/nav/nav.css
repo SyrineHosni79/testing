@@ -7,20 +7,12 @@ ul a {
   text-decoration: none;
   color: #fff;
   margin: 0 15px;
-  display: block;
+  text-align: right;
 }
 .titre {
   font-size: 25px;
-  width: 30%;
   float: left;
   display: block;
   color: #fff;
-}
-.A {
-  width: 30%;
-  float: left;
-}
-.B {
-  width: 70%;
-  overflow: hidden;
+  margin: 1%;
 }

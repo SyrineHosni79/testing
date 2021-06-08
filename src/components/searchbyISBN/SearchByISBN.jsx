@@ -3,64 +3,22 @@ import React, { Component } from 'react'
 import getBooks from '../../xhr/getAllBooks';
 import getBookByISBN from "../../xhr/getBookByISBN"
 import MediaCard from '../card/Card';
-import './SearchByISBN'
+import './SearchByISBN.css'
 
-export default class SearchByISBN extends Component {
-  state={
-    bookDetails:{},
-    searchedISBN:"",
-    allBooks:[],
-    bookByISBN:[]
-  } 
-
-  async componentDidMount() {
-    getBooks().then( (response)=>{
-      this.setState({allBooks:response.data}); 
-    })
-        
-  }
-
-  onchangeISBN = (e) => {
-        this.setState({searchedISBN:e.target.value})
-        console.log("ISBN",this.state.searchedISBN);
-      };
-  searchISBN = () => {
-    /*
-        getBookByISBN(this.state.searchedISBN).then( (response)=>{
-          this.setState({bookDetails:response.data});
-          console.log("book Details",this.state.bookDetails);
-        })
-    */  
-        let bookByISBN = [];
-        bookByISBN=this.state.allBooks.map( (i) => {
-      
-          if (i.ISBN == this.state.searchedISBN )
-         {
-          console.log(true)
-          return(
-            <div >
-            < MediaCard className="MediaCard" title={i.title} summary={i.summary} author={i.author} image={i.image}/> 
-             </div>
-          );
-          
-         }
-           else
-          console.log(false)
-        })
-        this.setState({bookByISBN:bookByISBN});
-      }
+export default function SearchByISBN (props) {
+  
+  const onchangeAuthor = (e) => {
+    props.onAuthorChange(e);
+        }
     
-    render() {
+   
         return (
-            <div>
-               <h2>Find book by ISBN  :</h2>
-      
-      <form  noValidate autoComplete="off">
-         <TextField id="standard-basic" label="Search by ISBN" onChange={this.onchangeISBN} />
-         <br></br><br></br>
-        <Button variant="contained" onClick={this.searchISBN}>Search</Button>
-      </form>
-      <br></br><br></br>
+            <div className="search-byisbn-component">
+               <h2 >Find book by ISBN  :</h2>
+              <form  noValidate autoComplete="off">
+              <TextField id="standard-basic" label="Search by ISBN" onChange={onchangeAuthor} />
+              </form>
+              <br></br><br></br>
       {/*
        {this.state.bookDetails.book?
        (<div>
@@ -81,10 +39,6 @@ export default class SearchByISBN extends Component {
        )}
        
       </div>):null}  */}
-
-{ this.state.bookByISBN}
-<br></br><br></br>
          </div>
         )
-    }
 }

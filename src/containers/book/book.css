@@ -1,3 +1,6 @@
-.Book {
-  margin: 1%;
+.book {
+  margin: 5%;
+}
+.book-components {
+  display: block;
 }

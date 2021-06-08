@@ -20,17 +20,36 @@ export default class Book extends Component {
         /* this.handleSearchedBookChange = this.handleSearchedBookChange.bind(this) */ //in constructor binding
     }
        
-    handleSearchedBookChange = (e)=>{   //inline binding
-     
-    
+    handleSearchedISBNChange = (e)=>{   //inline binding
       const foundedBooks = this.state.books.filter((book)=>{
-        return book.title.toUpperCase().includes(e.target.value.toUpperCase())
+        return book.ISBN.toString().startsWith(e.target.value)
       })
       this.setState({
         searchedBook:e.target.value,
         foundBooks : foundedBooks
       })
     }
+    handleSearchedTitleChange = (e) => {
+      const foundedBooks= this.state.books.filter( (book)=>{
+        return book.title.toUpperCase().includes(e.target.value.toUpperCase())
+      })
+      this.setState({
+        searchedBook:e.target.value,
+        foundBooks:foundedBooks
+      })
+    }
+    handleSearchedAuthorChange = (e) => {
+      
+        const foundedBooks= this.state.books.filter( (book)=>{
+          return book.author.toUpperCase().includes(e.target.value.toUpperCase())
+        })
+        this.setState({
+          searchedBook:e.target.value,
+          foundBooks:foundedBooks
+        })
+      }
+    
+
      componentDidMount() {
 
         getBooks().then( (response) => {
@@ -44,17 +63,17 @@ export default class Book extends Component {
     render() {
       return (
         
-        <div className="Book">
+        <div className="book">
           <div>
         <Grid container spacing={3} >
-                <Grid item xs={12} sm={3}>
-                  <SearchByISBN />
+                <Grid item xs={12} sm={4}>
+                  <SearchByISBN className="book-components" onAuthorChange={this.handleSearchedISBNChange} searchString={this.state.searchedBook}/>
                  </Grid>
-                 <Grid item xs={12} sm={3}>
-                  <SearchByTitle onTitleChange={this.handleSearchedBookChange} searchString={this.state.searchedBook}/>
+                 <Grid item xs={12} sm={4}>
+                  <SearchByTitle className="book-components" onTitleChange={this.handleSearchedTitleChange} searchString={this.state.searchedBook}/>
                  </Grid>
-                 <Grid item xs={12} sm={6}>
-                  <SearchByAuthor />
+                 <Grid item xs={12} sm={4}>
+                  <SearchByAuthor className="book-components" onAuthorChange={this.handleSearchedAuthorChange} searchString={this.state.searchedBook}/>
                  </Grid>
         </Grid>
         </div>
@@ -68,7 +87,7 @@ export default class Book extends Component {
                  author={element.author} image={element.image}/>
               </Grid>
               )
-            }))} 
+             }))} 
              { this.state.searchedBook === "" &&(this.state.books.map( (element,index)=>{
               return (
                 <Grid item xs={12} sm={2} key={index}>
@@ -76,7 +95,7 @@ export default class Book extends Component {
                  author={element.author} image={element.image}/>
               </Grid>
               )
-            }))} 
+             }))} 
             </Grid>
             </div>
             

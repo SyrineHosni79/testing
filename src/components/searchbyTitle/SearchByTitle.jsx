@@ -15,7 +15,6 @@ export default function SearchByTitle(props) {
 						id="standard-basic"
 						label=""
 						onChange={onchangetitle}
-            value={props.searchString}
             placeholder="Search By Title"
 					/>
 					<br></br>
