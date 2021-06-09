@@ -2,15 +2,15 @@ const BOOKS='/books';
 const AUTHORS='/authors';
 const BOOKSDATA='/data/books';
 const AUTHORSDATA='/data/authors';
-const ORDERS='/orders';
-const ORDERID='/orders/id';
+const BOOKDATA='/books/isbn?';
+const AUTHORDATA='/authors/id?';
 
 const ENDPOINTS={
     BOOKS ,
     AUTHORS,
     BOOKSDATA,
     AUTHORSDATA,
-    ORDERS,
-    ORDERID
+    AUTHORDATA,
+    BOOKDATA
 };
 export default ENDPOINTS 

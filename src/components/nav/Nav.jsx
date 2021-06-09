@@ -7,9 +7,9 @@ const Nav = () => {
             <div className="container">
                 <a  className="titre" >Book Store</a>
                     <ul>
-                         <a href="/">Home</a>
-                         <a href="Authors">Authors</a>
-                         <a href="/Books">Books</a>
+                         <a className="linkss" href="/">Home</a>
+                         <a className="linkss" href="/authors">Authors</a>
+                         <a className="linkss" href="/books">Books</a>
                     </ul>
        
             </div>

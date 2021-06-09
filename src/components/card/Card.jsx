@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -21,8 +22,15 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
-  const classes = useStyles();
 
+  let history = useHistory();
+  const classes = useStyles();
+  const displayDetails = () => {
+    console.log(props.id);
+    //redirecting
+    history.push('/authors/id?'+props.id);
+    
+  }
   return (
     <Card className={props.className}>
       <CardActionArea>
@@ -41,7 +49,7 @@ export default function MediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Button size="small" color="primary">
+      <Button size="small" color="primary" onClick={displayDetails}>
           Learn More
         </Button>
       </CardActions>

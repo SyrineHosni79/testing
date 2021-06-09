@@ -31,8 +31,8 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-          <h1>highlighted Books :</h1>
-            <Grid container spacing={3} className="BookList">
+          <h2>highlighted Books :</h2>
+            <Grid container spacing={3} >
             {this.state.highlightedBooks.map( (element)=>{
               return (
                 <Grid item xs={12} sm={3}>
@@ -42,19 +42,19 @@ export default class Home extends Component {
               )
             })} 
             </Grid>
-            <h1>highlighted Authors :</h1>
-            <Grid container spacing={3} className="BookList">
+            <h2>highlighted Authors :</h2>
+            <Grid container spacing={3} >
             {this.state.highlightedAuthors.map( (element)=>{
               return (
                 <Grid item xs={12} sm={3}>
-                < MediaCard className="MediaCard" title={element.title} summary={element.biography}
-                 author={element.author} image={element.image}/>
+                < MediaCard className="MediaCard" title={element.name} summary={element.biography}
+                  image={element.image}/>
               </Grid>
               )
             })} 
             </Grid>
             <h3> The available links to the next steps :</h3>
-            <Grid container spacing={3} className="BookList">
+            <Grid container spacing={3} >
             {this.state.linkss.map( (element)=>{
               return (
                 <Grid item xs={12} sm={3}>

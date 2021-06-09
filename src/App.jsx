@@ -5,6 +5,8 @@ import Nav from './components/nav/Nav';
 import Book from './containers/book/Book';
 import Author from './containers/author/Author';
 import Home from './containers/home/Home'
+import AuthorId from './components/authorId/AuthorId';
+import BookISBN from './components/bookisbn/bookISBN';
 
 
 function App() {
@@ -14,9 +16,10 @@ function App() {
       <Nav />
     </div>
     <Route  exact path="/" component= {Home} />
-    <Route path="/Books" component= {Book} />
-    <Route path="/Authors" component= {Author} />
-
+    <Route  exact path="/books" component={Book}/>
+    <Route  path="/books/isbn" component= {BookISBN} />
+    <Route  path="/authors/id" component={AuthorId}/>
+    <Route exact path="/authors" component= {Author} />
     </Router>
   );
 }

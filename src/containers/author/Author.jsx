@@ -27,7 +27,6 @@ export default class Author extends Component {
       })
       this.setState({searchedAuthor:e.target.value,
                      foundAuthors:foundedAuthors});
-      console.log(this.state.foundAuthors)
     }
     render() {
       return (
@@ -48,7 +47,7 @@ export default class Author extends Component {
               return (
                 <Grid item xs={12} sm={2}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
-                  image={element.image}/>
+                  image={element.image} id={element.id}/>
                 </Grid>
               )
             }))}

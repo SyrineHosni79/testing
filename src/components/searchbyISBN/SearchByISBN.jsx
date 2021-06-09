@@ -19,26 +19,7 @@ export default function SearchByISBN (props) {
               <TextField id="standard-basic" label="Search by ISBN" onChange={onchangeAuthor} />
               </form>
               <br></br><br></br>
-      {/*
-       {this.state.bookDetails.book?
-       (<div>
-       <Typography >title:{this.state.bookDetails.book.title}</Typography>
-       <Typography >author:{this.state.bookDetails.book.author.name}</Typography>
-       <Typography>summary:{this.state.bookDetails.book.summary}</Typography>
-       <Typography>image:{this.state.bookDetails.book.image}</Typography>
-       <Typography>links:</Typography>
-       { this.state.bookDetails.links.map( (x)=>{
-         console.log(x);
-         return(
-         <div>
-         <p>rel:{x.rel}</p>
-         <p>href:{x.href}</p> 
-          </div>
-         )    
-       }
-       )}
-       
-      </div>):null}  */}
+      
          </div>
         )
 }
