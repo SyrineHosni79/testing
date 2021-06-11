@@ -13,7 +13,7 @@ export default function SearchByAuthor(props){
   
    
         return (
-            <div>
+            <div className={props.className}>
                <h2>Find book by Author  :</h2>
       
       <form  noValidate autoComplete="off">

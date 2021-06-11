@@ -34,28 +34,28 @@ export default class Author extends Component {
     <div className="author-container">
         <div>
         <Grid container spacing={3} >
-              <Grid item xs={12} sm={3}>
+              <Grid className="author-components"item xs={12} sm={3} >
                 <SearchByName onNameChange={this.onHandleAuthorChange} searchString={this.state.searchedAuthor}/>
               </Grid>
                  
         </Grid>
         </div>
         <div>
-          <h1>List Authors :</h1>
+          <h2>List Authors :</h2>
             <Grid container spacing={3} className="author-list">
             {this.state.searchedAuthor ==="" &&(this.state.authors.map( (element)=>{
               return (
-                <Grid item xs={12} sm={2}>
+                <Grid className="author-components" item xs={12} sm={2} key={element.id}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
-                  image={element.image} id={element.id}/>
+                  image={element.image} id={element.id} type="author"/>
                 </Grid>
               )
             }))}
             {this.state.searchedAuthor !== ""&&(this.state.foundAuthors.map( (element)=>{
                return (
-                <Grid item xs={12} sm={2}>
+                <Grid item xs={12} sm={2} key={element.id}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
-                  image={element.image}/>
+                  image={element.image} type="author"/>
                 </Grid>
                )
             }))} 

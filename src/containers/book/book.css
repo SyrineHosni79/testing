@@ -1,6 +1,11 @@
 .book {
-  margin: 5%;
+  margin: 2%;
 }
 .book-components {
   display: block;
+  min-width: max-content;
+}
+.book-element.MuiGrid-item {
+  min-width: 145px;
+  max-width: 200px;
 }

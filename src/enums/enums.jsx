@@ -2,8 +2,8 @@ const BOOKS='/books';
 const AUTHORS='/authors';
 const BOOKSDATA='/data/books';
 const AUTHORSDATA='/data/authors';
-const BOOKDATA='/books/isbn?';
-const AUTHORDATA='/authors/id?';
+const BOOKDATA='/books/';
+const AUTHORDATA='/authors/';
 
 const ENDPOINTS={
     BOOKS ,

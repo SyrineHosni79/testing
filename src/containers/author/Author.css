@@ -1,3 +1,7 @@
-.Author {
-  margin: 1%;
+.author-container {
+  margin: 2%;
+}
+.author-components.MuiGrid-item {
+  min-width: 145px;
+  max-width: 200px;
 }

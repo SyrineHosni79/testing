@@ -7,21 +7,15 @@ export default function SearchByTitle(props) {
 	};
 	
 		return (
-			<div>
+			<div className={props.className}>
 				<h2>Find book by title :</h2>
-
-				<form noValidate autoComplete="off">
+                 <form noValidate autoComplete="off">
 					<TextField
 						id="standard-basic"
-						label=""
 						onChange={onchangetitle}
-            placeholder="Search By Title"
+                     label="Search By Title"
 					/>
-					<br></br>
-					<br></br>
 				</form>
-				<br></br>
-				<br></br>
 			</div>
 		);
 	

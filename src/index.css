@@ -8,15 +8,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.navbar {
-  overflow: hidden;
-  background: rgb(59, 61, 59);
-  color: #fff;
-}
-.container {
-  width: 80%;
-  margin: auto;
-}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

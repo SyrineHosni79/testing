@@ -6,7 +6,7 @@ import Book from './containers/book/Book';
 import Author from './containers/author/Author';
 import Home from './containers/home/Home'
 import AuthorId from './components/authorId/AuthorId';
-import BookISBN from './components/bookisbn/bookISBN';
+import BookISBN from './components/bookISBN/bookISBN';
 
 
 function App() {
@@ -16,11 +16,11 @@ function App() {
       <Nav />
     </div>
     <Route  exact path="/" component= {Home} />
-    <Route  exact path="/books" component={Book}/>
-    <Route  path="/books/isbn" component= {BookISBN} />
-    <Route  path="/authors/id" component={AuthorId}/>
-    <Route exact path="/authors" component= {Author} />
-    </Router>
+    <Route   exact path="/books"  component={Book}/>
+    <Route   exact path="/authors" component= {Author} />
+    <Route    path="/book/" component= {BookISBN} />
+    <Route  path="/author/" component={AuthorId}/>
+</Router>
   );
 }
 

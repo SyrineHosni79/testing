@@ -48,32 +48,26 @@ export default class Book extends Component {
           foundBooks:foundedBooks
         })
       }
-    
-
      componentDidMount() {
-
         getBooks().then( (response) => {
-    
             this.setState({books:response.data,
-
             foundBooks:response.data
             })
         })
     }
     render() {
       return (
-        
         <div className="book">
           <div>
         <Grid container spacing={3} >
-                <Grid item xs={12} sm={4}>
-                  <SearchByISBN className="book-components" onAuthorChange={this.handleSearchedISBNChange} searchString={this.state.searchedBook}/>
+                <Grid className="book-components" item xs={12} sm={4}>
+                  <SearchByISBN onAuthorChange={this.handleSearchedISBNChange} searchString={this.state.searchedBook}/>
                  </Grid>
-                 <Grid item xs={12} sm={4}>
-                  <SearchByTitle className="book-components" onTitleChange={this.handleSearchedTitleChange} searchString={this.state.searchedBook}/>
+                 <Grid className="book-components"  item xs={12} sm={4}>
+                  <SearchByTitle onTitleChange={this.handleSearchedTitleChange} searchString={this.state.searchedBook}/>
                  </Grid>
-                 <Grid item xs={12} sm={4}>
-                  <SearchByAuthor className="book-components" onAuthorChange={this.handleSearchedAuthorChange} searchString={this.state.searchedBook}/>
+                 <Grid className="book-components" item xs={12} sm={4}>
+                  <SearchByAuthor onAuthorChange={this.handleSearchedAuthorChange} searchString={this.state.searchedBook}/>
                  </Grid>
         </Grid>
         </div>
@@ -82,25 +76,23 @@ export default class Book extends Component {
             <Grid container spacing={3} className="BookList">
              { this.state.searchedBook !== "" &&(this.state.foundBooks.map( (element,index)=>{
               return (
-                <Grid item xs={12} sm={2} key={index}>
-                < MediaCard className="MediaCard" title={element.title} summary={element.summary}
-                 author={element.author} image={element.image}/>
+                <Grid className="book-element" item xs={12} sm={2} key={index}>
+                < MediaCard className="MediaCard" isbn={element.ISBN}  title={element.title} summary={element.summary}
+                 author={element.author} image={element.image} type="book"/>
               </Grid>
               )
              }))} 
              { this.state.searchedBook === "" &&(this.state.books.map( (element,index)=>{
               return (
-                <Grid item xs={12} sm={2} key={index}>
-                < MediaCard className="MediaCard" title={element.title} summary={element.summary}
-                 author={element.author} image={element.image}/>
+                <Grid className="book-element" item xs={12} sm={2} key={index}>
+                < MediaCard className="MediaCard" isbn={element.ISBN} title={element.title} summary={element.summary}
+                 author={element.author} image={element.image} type="book"/>
               </Grid>
               )
              }))} 
             </Grid>
             </div>
-            
         </div>
-        
       );  
     }
   }

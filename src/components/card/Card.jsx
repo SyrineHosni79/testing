@@ -26,10 +26,13 @@ export default function MediaCard(props) {
   let history = useHistory();
   const classes = useStyles();
   const displayDetails = () => {
-    console.log(props.id);
     //redirecting
-    history.push('/authors/id?'+props.id);
-    
+    if(props.type==="author")
+    history.push('/author/'+props.id);
+    else
+    if(props.type==="book")
+    history.push('/book/'+props.isbn);
+
   }
   return (
     <Card className={props.className}>

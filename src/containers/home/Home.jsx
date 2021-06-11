@@ -2,6 +2,7 @@ import { Grid } from '@material-ui/core';
 import React, { Component } from 'react'
 import MediaCard from '../../components/card/Card';
 import { getData } from '../../xhr/httprequest';
+import './Home.css';
 
 export default class Home extends Component {
 
@@ -30,14 +31,14 @@ export default class Home extends Component {
     
     render() {
         return (
-            <div>
+            <div className="home-container">
           <h2>highlighted Books :</h2>
             <Grid container spacing={3} >
             {this.state.highlightedBooks.map( (element)=>{
               return (
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={3} key={element.isbn}>
                 < MediaCard className="MediaCard" title={element.title} summary={element.summary}
-                 author={element.author} image={element.image}/>
+                 author={element.author} image={element.image} type="book"/>
               </Grid>
               )
             })} 
@@ -46,9 +47,9 @@ export default class Home extends Component {
             <Grid container spacing={3} >
             {this.state.highlightedAuthors.map( (element)=>{
               return (
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={3} key={element.id}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
-                  image={element.image}/>
+                  image={element.image} type="author"/>
               </Grid>
               )
             })} 
@@ -57,7 +58,7 @@ export default class Home extends Component {
             <Grid container spacing={3} >
             {this.state.linkss.map( (element)=>{
               return (
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={3} key={element.rel}>
                 <a href={element.href}>{element.rel}</a>
               </Grid>
               )

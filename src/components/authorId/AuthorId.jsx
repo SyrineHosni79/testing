@@ -12,20 +12,21 @@ export default class AuthorId extends Component {
         authorDetails:[]
     }
     async componentDidMount(){
-        let params=window.location.search.substring(1)
+        let params=this.props.history.location.pathname.substring(9)
+        console.log("parametre",params)
+        //console.log(this.props)
         getAuthorById(params).then((response)=>{
-            console.log(response.data);
             this.setState({authorDetails:response.data})
 
         })
     }
     render() {
         return (
-    <div className="authorDetails">    
+    <div className="author-details">    
         {this.state.authorDetails.author?
         (<div>
             <Grid container spacing={3} >
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={3}>
             < MediaCard className="MediaCard" title={this.state.authorDetails.author.name} summary={this.state.authorDetails.author.biography}
                   image={this.state.authorDetails.author.image}/>
             </Grid>
@@ -34,7 +35,7 @@ export default class AuthorId extends Component {
             <Grid container spacing={3} >
             {this.state.authorDetails.author.books.map( (element)=>{
               return (
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={3} key={element.isbn}>
                 < MediaCard className="MediaCard" title={element.title} summary={element.summary}
                  author={element.author} image={element.image}/>
                 </Grid>
@@ -45,7 +46,7 @@ export default class AuthorId extends Component {
             <Grid container spacing={3}>
             { this.state.authorDetails.links.map( (x)=>{
              return(
-             <Grid item xs={12} sm={3}>
+             <Grid item xs={12} sm={3} key={x.rel}>
              <a href={x.href}>{x.rel}</a>
              </Grid>
              )})
