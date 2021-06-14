@@ -1,7 +1,6 @@
-import { Button, Grid, TextField } from '@material-ui/core';
-import React, { Component } from 'react'
-import getAllAuthors from '../../xhr/getAllAuthors';
-import MediaCard from '../card/Card';
+import { TextField } from '@material-ui/core';
+import React from 'react'
+
 
 export default function SearchByAuthor(props){
     

@@ -5,3 +5,7 @@
   min-width: 145px;
   max-width: 200px;
 }
+.author-elements.MuiGrid-item {
+  display: block;
+  min-width: max-content;
+}

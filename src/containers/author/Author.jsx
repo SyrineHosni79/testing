@@ -1,41 +1,52 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import MediaCard from '../../components/card/Card';
 import Grid from '@material-ui/core/Grid';
 import getAllAuthors from '../../xhr/getAllAuthors';
-import SearchById from '../../components/searchbyId/SearchById';
 import './Author.css';
 import SearchByName from '../../components/searchbyName/SearchByName';
+import PaginationTool from '../../components/pagintion/pagination';
 
-export default class Author extends Component {
-    constructor(props){
-        super(props);
-    }
-    state={searchedAuthor:"",
-          foundAuthors:[],
-          authors:[]
-        }
-    async componentDidMount() {
+export default function Author () {
 
-        getAllAuthors().then( (response) => {
-          this.setState({authors:response.data})
-          console.log("authors",this.state.authors)
+   const [searchedAuthor,setSearchedAuthor]=useState("");
+   const [foundAuthors,setFoundAuthors]=useState([]);
+   const [authors,setAuthors]=useState([]);
+   const [totalPage,setTotalPage]=useState(3);
+   const [itemsPerPage, setitemsPerPage] = useState(5);
+   const [currentPage, setcurrentPage] = useState(1);
+        
+      useEffect(   ()  => {
+          getAllAuthors().then( (response) => {
+          setAuthors(response.data);
+          const currentItems=response.data.slice(0,5);
+          console.log("authors",authors);
         })
-    }
-    onHandleAuthorChange = (e) => {
-      const foundedAuthors =this.state.authors.filter( (author)=>{
+    },[]);
+
+    const onHandleAuthorChange = (e) => {
+      const foundedAuthors =authors.filter( (author)=>{
         return author.name.toUpperCase().includes(e.target.value.toUpperCase())
       })
-      this.setState({searchedAuthor:e.target.value,
-                     foundAuthors:foundedAuthors});
+      setSearchedAuthor(e.target.value)
+      setFoundAuthors(foundedAuthors);
     }
-    render() {
-      return (
-        
-    <div className="author-container">
+  
+    const changePage = (value)=> {
+      //take page number
+       setcurrentPage(value);
+      console.log("valueee",currentPage);
+      //set content page
+    }
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems=authors.slice(indexOfFirstItem, indexOfLastItem);
+    console.log("indexfirst",indexOfFirstItem,"indexlast",indexOfLastItem)
+  return (
+      <div className="author-container">
         <div>
         <Grid container spacing={3} >
-              <Grid className="author-components"item xs={12} sm={3} >
-                <SearchByName onNameChange={this.onHandleAuthorChange} searchString={this.state.searchedAuthor}/>
+              <Grid className="author-elements" item xs={12} sm={3} >
+                <SearchByName onNameChange={onHandleAuthorChange} searchString={searchedAuthor}/>
               </Grid>
                  
         </Grid>
@@ -43,15 +54,14 @@ export default class Author extends Component {
         <div>
           <h2>List Authors :</h2>
             <Grid container spacing={3} className="author-list">
-            {this.state.searchedAuthor ==="" &&(this.state.authors.map( (element)=>{
+            {searchedAuthor ==="" ?(currentItems.map( (element)=>{
               return (
                 <Grid className="author-components" item xs={12} sm={2} key={element.id}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
                   image={element.image} id={element.id} type="author"/>
                 </Grid>
               )
-            }))}
-            {this.state.searchedAuthor !== ""&&(this.state.foundAuthors.map( (element)=>{
+            })):(foundAuthors.map( (element)=>{
                return (
                 <Grid item xs={12} sm={2} key={element.id}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
@@ -60,9 +70,10 @@ export default class Author extends Component {
                )
             }))} 
             </Grid>
+            <PaginationTool count={totalPage} onChange={changePage}/>
+
         </div>
     </div>
       );  
-    }
   }
 

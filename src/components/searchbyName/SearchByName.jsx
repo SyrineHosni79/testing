@@ -1,5 +1,5 @@
-import { Button, TextField } from '@material-ui/core';
-import React, { Component } from 'react'
+import { TextField } from '@material-ui/core';
+import React from 'react'
 
 export default function SearchByName (props) {
    

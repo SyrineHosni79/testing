@@ -1,13 +1,11 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import React, { Component } from 'react'
 import getAuthorById from '../../xhr/getAuthorById'
 import MediaCard from '../card/Card'
 import './authorId.css'
 
 export default class AuthorId extends Component {
-    constructor(props){
-        super(props)
-    }
+    
     state={
         authorDetails:[]
     }

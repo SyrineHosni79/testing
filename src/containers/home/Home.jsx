@@ -1,6 +1,7 @@
 import { Grid } from '@material-ui/core';
 import React, { Component } from 'react'
 import MediaCard from '../../components/card/Card';
+import PaginationSize from '../../components/pagintion/pagination';
 import { getData } from '../../xhr/httprequest';
 import './Home.css';
 
@@ -10,7 +11,8 @@ export default class Home extends Component {
         highlightedBooks:[],
         highlightedAuthors:[],
         linkss:[],
-        allData:[]
+        allData:[],
+        totalPage:3
       } 
     
       async componentDidMount() {
@@ -18,15 +20,22 @@ export default class Home extends Component {
         getData(p).then( (response)=>{
           this.setState({allData:response.data});
           const data=response.data;
-          console.log(this.state.allData) ;
           this.setState({highlightedAuthors:data.highlightedAuthors});
-          console.log(this.state.highlightedAuthors)
           this.setState({highlightedBooks:data.highlightedBooks})
-          console.log(this.state.highlightedBooks);
           this.setState({linkss:data.links})
-          console.log(this.state.linkss);
         })
             
+      }
+      setContentPages=()=>{
+
+      };
+
+      changePage = (value)=>{
+        //take page number
+        console.log(value);
+
+        //set page
+
       }
     
     render() {
@@ -36,7 +45,7 @@ export default class Home extends Component {
             <Grid container spacing={3} >
             {this.state.highlightedBooks.map( (element)=>{
               return (
-                <Grid item xs={12} sm={3} key={element.isbn}>
+                <Grid className="element" item xs={12} sm={3} key={element.isbn}>
                 < MediaCard className="MediaCard" title={element.title} summary={element.summary}
                  author={element.author} image={element.image} type="book"/>
               </Grid>
@@ -45,26 +54,26 @@ export default class Home extends Component {
             </Grid>
             <h2>highlighted Authors :</h2>
             <Grid container spacing={3} >
-            {this.state.highlightedAuthors.map( (element)=>{
+             {this.state.highlightedAuthors.map( (element)=>{
               return (
-                <Grid item xs={12} sm={3} key={element.id}>
+                <Grid className="element" item xs={12} sm={3} key={element.id}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
                   image={element.image} type="author"/>
-              </Grid>
+                </Grid>
               )
-            })} 
+             })} 
             </Grid>
             <h3> The available links to the next steps :</h3>
             <Grid container spacing={3} >
-            {this.state.linkss.map( (element)=>{
+             {this.state.linkss.map( (element)=>{
               return (
                 <Grid item xs={12} sm={3} key={element.rel}>
                 <a href={element.href}>{element.rel}</a>
               </Grid>
               )
-            })} 
+             })} 
             </Grid>
-          
+            <PaginationSize count={this.state.totalPage} onChange={this.changePage}/>
             </div>
         
         )
