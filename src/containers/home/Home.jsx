@@ -33,7 +33,7 @@ export default class Home extends Component {
             <Grid container spacing={3} >
             {this.state.highlightedBooks.map( (element)=>{
               return (
-                <Grid className="element" item xs={12} sm={3} key={element.isbn}>
+                <Grid className="element" item xs={12} sm={3} key={element.ISBN}>
                 < MediaCard className="MediaCard" title={element.title} summary={element.summary}
                  author={element.author} image={element.image} type="book"/>
               </Grid>

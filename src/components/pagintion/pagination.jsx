@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PaginationTool(props) {
   const classes = useStyles();
-  const [currentpage,setcurrentpage]=useState(1);
 
   const handleChange = (event, value) => {
       //call parent function
