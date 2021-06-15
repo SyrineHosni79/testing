@@ -7,7 +7,7 @@ import SearchByTitle from '../../components/searchbyTitle/SearchByTitle'
 import './book.css';
 import SearchByAuthor from "../../components/searchbyAuthor/SearchByAuthor";
 import { useEffect } from "react";
-import PaginationTool from '../../components/pagintion/pagination';
+import PaginationTool from '../../components/pagintion/PaginationTool';
 
 export default function Book ()  {
     const [books, setbooks] = useState([]);

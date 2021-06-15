@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import getAllAuthors from '../../xhr/getAllAuthors';
 import './Author.css';
 import SearchByName from '../../components/searchbyName/SearchByName';
-import PaginationTool from '../../components/pagintion/pagination';
+import PaginationTool from '../../components/pagintion/PaginationTool';
 
 export default function Author () {
 
