@@ -1,7 +1,6 @@
 import { Grid } from '@material-ui/core';
 import React, { Component } from 'react'
 import MediaCard from '../../components/card/Card';
-import PaginationSize from '../../components/pagintion/pagination';
 import { getData } from '../../xhr/httprequest';
 import './Home.css';
 
@@ -12,7 +11,6 @@ export default class Home extends Component {
         highlightedAuthors:[],
         linkss:[],
         allData:[],
-        totalPage:3
       } 
     
       async componentDidMount() {
@@ -26,17 +24,7 @@ export default class Home extends Component {
         })
             
       }
-      setContentPages=()=>{
-
-      };
-
-      changePage = (value)=>{
-        //take page number
-        console.log(value);
-
-        //set page
-
-      }
+     
     
     render() {
         return (
@@ -73,7 +61,6 @@ export default class Home extends Component {
               )
              })} 
             </Grid>
-            <PaginationSize count={this.state.totalPage} onChange={this.changePage}/>
             </div>
         
         )

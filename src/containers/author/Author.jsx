@@ -11,15 +11,15 @@ export default function Author () {
    const [searchedAuthor,setSearchedAuthor]=useState("");
    const [foundAuthors,setFoundAuthors]=useState([]);
    const [authors,setAuthors]=useState([]);
-   const [totalPage,setTotalPage]=useState(3);
    const [itemsPerPage, setitemsPerPage] = useState(5);
    const [currentPage, setcurrentPage] = useState(1);
         
       useEffect(   ()  => {
           getAllAuthors().then( (response) => {
           setAuthors(response.data);
-          const currentItems=response.data.slice(0,5);
+          setFoundAuthors(response.data)
           console.log("authors",authors);
+          
         })
     },[]);
 
@@ -27,6 +27,7 @@ export default function Author () {
       const foundedAuthors =authors.filter( (author)=>{
         return author.name.toUpperCase().includes(e.target.value.toUpperCase())
       })
+      setcurrentPage(1);
       setSearchedAuthor(e.target.value)
       setFoundAuthors(foundedAuthors);
     }
@@ -35,11 +36,11 @@ export default function Author () {
       //take page number
        setcurrentPage(value);
       console.log("valueee",currentPage);
-      //set content page
     }
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems=authors.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems=foundAuthors.slice(indexOfFirstItem, indexOfLastItem);
+    let totalPage=Math.ceil(foundAuthors.length/itemsPerPage)
     console.log("indexfirst",indexOfFirstItem,"indexlast",indexOfLastItem)
   return (
       <div className="author-container">
@@ -54,24 +55,20 @@ export default function Author () {
         <div>
           <h2>List Authors :</h2>
             <Grid container spacing={3} className="author-list">
-            {searchedAuthor ==="" ?(currentItems.map( (element)=>{
+            {currentItems.map( (element)=>{
               return (
                 <Grid className="author-components" item xs={12} sm={2} key={element.id}>
                 < MediaCard className="MediaCard" title={element.name} summary={element.biography}
                   image={element.image} id={element.id} type="author"/>
                 </Grid>
               )
-            })):(foundAuthors.map( (element)=>{
-               return (
-                <Grid item xs={12} sm={2} key={element.id}>
-                < MediaCard className="MediaCard" title={element.name} summary={element.biography}
-                  image={element.image} type="author"/>
-                </Grid>
-               )
-            }))} 
+            })}
             </Grid>
-            <PaginationTool count={totalPage} onChange={changePage}/>
-
+            <PaginationTool 
+            count={totalPage}
+             onChange={changePage}
+             currentPage={currentPage}
+            />
         </div>
     </div>
       );  

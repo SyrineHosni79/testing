@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import './pagination.css';
+import { useState } from 'react';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,16 +15,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PaginationTool(props) {
   const classes = useStyles();
-  const [page, setPage] = React.useState(1);
+  const [currentpage,setcurrentpage]=useState(1);
+
   const handleChange = (event, value) => {
       //call parent function
       props.onChange(value);
-       setPage(value);
-  };
+ };
+ const page=props.currentPage;
 
   return (
     <div className={classes.root} className="page" >
-      <Pagination  count={props.count} size="large"  page={page} onChange={handleChange} /> 
+      <Pagination  
+      count={props.count}
+       size="large"
+         page={page} 
+         onChange={handleChange}
+        /> 
     </div>
   );
 }
