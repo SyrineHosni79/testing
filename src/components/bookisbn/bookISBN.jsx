@@ -3,23 +3,22 @@ import React, { Component } from 'react'
 import getBookById from '../../xhr/getBookById'
 import MediaCard from '../card/Card'
 import './bookISBN.css';
+import log from '../../utils/logger'
 
 export default class BookISBN extends Component {
     constructor(props){
         super(props)
-    
     this.state={
         bookDetails:[]
     }
 }
     async componentDidMount(){
         let params=this.props.history.location.pathname.substring(8)
-        console.log("parametre",this.props.history)
+        log("parametre",this.props.history)
         getBookById(params).then( ( response) => {
             console.log(response.data);
             this.setState({bookDetails:response.data})
-
-        })
+            })
     }
     render() {
         return(
@@ -52,7 +51,5 @@ export default class BookISBN extends Component {
         </div>):null
         }
       </div>)
-    
     }
-
 }

@@ -5,8 +5,9 @@ import getAllAuthors from '../../xhr/getAllAuthors';
 import './Author.css';
 import SearchByName from '../../components/searchbyName/SearchByName';
 import PaginationTool from '../../components/pagintion/PaginationTool';
+import log from '../../utils/logger'
 
-export default function Author () {
+export default function Author (props) {
 
    const [searchedAuthor,setSearchedAuthor]=useState("");
    const [foundAuthors,setFoundAuthors]=useState([]);
@@ -18,8 +19,7 @@ export default function Author () {
           getAllAuthors().then( (response) => {
           setAuthors(response.data);
           setFoundAuthors(response.data)
-          console.log("authors",authors);
-          
+          log("authors",authors);
         })
     },[]);
 
@@ -35,13 +35,13 @@ export default function Author () {
     const changePage = (value)=> {
       //take page number
        setcurrentPage(value);
-      console.log("valueee",currentPage);
+      log("valueee",currentPage);
     }
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems=foundAuthors.slice(indexOfFirstItem, indexOfLastItem);
     let totalPage=Math.ceil(foundAuthors.length/itemsPerPage)
-    console.log("indexfirst",indexOfFirstItem,"indexlast",indexOfLastItem)
+    log("indexfirst",indexOfFirstItem,"indexlast",indexOfLastItem)
   return (
       <div className="author-container">
         <div>
@@ -49,7 +49,6 @@ export default function Author () {
               <Grid className="author-elements" item xs={12} sm={3} >
                 <SearchByName onNameChange={onHandleAuthorChange} searchString={searchedAuthor}/>
               </Grid>
-                 
         </Grid>
         </div>
         <div>

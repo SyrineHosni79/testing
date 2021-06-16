@@ -5,7 +5,6 @@ import { getData } from '../../xhr/httprequest';
 import './Home.css';
 
 export default class Home extends Component {
-
     state={
         highlightedBooks:[],
         highlightedAuthors:[],
@@ -22,11 +21,8 @@ export default class Home extends Component {
           this.setState({highlightedBooks:data.highlightedBooks})
           this.setState({linkss:data.links})
         })
-            
       }
-     
-    
-    render() {
+        render() {
         return (
             <div className="home-container">
           <h2>highlighted Books :</h2>
@@ -62,7 +58,6 @@ export default class Home extends Component {
              })} 
             </Grid>
             </div>
-        
         )
     }
 }

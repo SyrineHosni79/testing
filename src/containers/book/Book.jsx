@@ -8,6 +8,7 @@ import './book.css';
 import SearchByAuthor from "../../components/searchbyAuthor/SearchByAuthor";
 import { useEffect } from "react";
 import PaginationTool from '../../components/pagintion/PaginationTool';
+import log from '../../utils/logger'
 
 export default function Book ()  {
     const [books, setbooks] = useState([]);
@@ -16,10 +17,9 @@ export default function Book ()  {
     const [itemsPerPage, setitemsPerPage] = useState(5);
     const [currentPage, setcurrentPage] = useState(1);
         /* this.handleSearchedBookChange = this.handleSearchedBookChange.bind(this) */ //in constructor binding
-    
-        const handleSearchedISBNChange = (e)=>{   //inline binding
-      const foundedBooks = books.filter((book)=>{
-        return book.ISBN.toString().startsWith(e.target.value)
+    const handleSearchedISBNChange = (e)=>{   //inline binding
+         const foundedBooks = books.filter((book)=>{
+         return book.ISBN.toString().startsWith(e.target.value)
       })
         setcurrentPage(1);
         setsearchedBook(e.target.value);

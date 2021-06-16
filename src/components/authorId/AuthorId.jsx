@@ -3,19 +3,17 @@ import React, { Component } from 'react'
 import getAuthorById from '../../xhr/getAuthorById'
 import MediaCard from '../card/Card'
 import './authorId.css'
-
+import log from '../../utils/logger'
 export default class AuthorId extends Component {
     
     state={
         authorDetails:[]
     }
-    async componentDidMount(){
+     componentDidMount(){
         let params=this.props.history.location.pathname.substring(9)
-        console.log("parametre",params)
-        //console.log(this.props)
+        log("parametre",params)
         getAuthorById(params).then((response)=>{
             this.setState({authorDetails:response.data})
-
         })
     }
     render() {
@@ -33,7 +31,7 @@ export default class AuthorId extends Component {
             <Grid container spacing={3} >
             {this.state.authorDetails.author.books.map( (element)=>{
               return (
-                <Grid item xs={12} sm={3} key={element.isbn}>
+                <Grid item xs={12} sm={3} key={element.ISBN}>
                 < MediaCard className="MediaCard" title={element.title} summary={element.summary}
                  author={element.author} image={element.image}/>
                 </Grid>
@@ -53,6 +51,5 @@ export default class AuthorId extends Component {
         </div>):null
         }
       </div>)
-    
     }
 }

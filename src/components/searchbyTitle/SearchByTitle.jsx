@@ -5,8 +5,7 @@ export default function SearchByTitle(props) {
 	const  onchangetitle = e => {
 		props.onTitleChange(e);
 	};
-	
-		return (
+	return (
 			<div className={props.className}>
 				<h2>Find book by title :</h2>
                  <form noValidate autoComplete="off">
@@ -18,5 +17,4 @@ export default function SearchByTitle(props) {
 				</form>
 			</div>
 		);
-	
 }
